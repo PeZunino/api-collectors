@@ -58,7 +58,7 @@ export class PhoneNumber{
 		return this.phoneNumber; // Fallback
 	}
   
-	get rawNumber(){
+	get rawNumber():string{
 		return this.phoneNumber;
 	}
 }
