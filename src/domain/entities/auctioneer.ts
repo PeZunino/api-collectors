@@ -60,9 +60,10 @@ export class Auctioneer{
 		this.props.name = newName;
 	}
 
-	public updateContactInfo(newEmail: string, newPhoneNumber: string): void {
+	public changeEmail(newEmail: string){
 		this.props.email = Email.create(newEmail);
-
+	}
+	public changePhoneNumber( newPhoneNumber: string): void {
 		this.props.phoneNumber = PhoneNumber.create(newPhoneNumber);
 	}
 
