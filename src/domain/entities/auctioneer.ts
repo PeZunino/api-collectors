@@ -56,18 +56,18 @@ export class Auctioneer{
 		return this.id.equals(other.id);
 	}
   
-	public changeName(newName: string): void {
+	public setName(newName: string): void {
 		this.props.name = newName;
 	}
 
-	public changeEmail(newEmail: string){
+	public setEmail(newEmail: string){
 		this.props.email = Email.create(newEmail);
 	}
-	public changePhoneNumber( newPhoneNumber: string): void {
+	public setPhoneNumber( newPhoneNumber: string): void {
 		this.props.phoneNumber = PhoneNumber.create(newPhoneNumber);
 	}
 
-	public changeAddress(newAddressProps:AddressProps): void {
+	public setAddress(newAddressProps:AddressProps): void {
 		this.props.address = Address.create(newAddressProps);
 	}
 
