@@ -9,29 +9,31 @@ interface Props{
 	state:string; 
 }
 
+export const addressSchema = z.object({
+	street: z.string()
+		.min(3, 'Street name is too short'),
+	number: z.string()
+		.min(1, 'Number is required'),
+	cep: z.string()
+		.regex(/^\d{5}-?\d{3}$/, 'Invalid CEP format')
+		.transform(val => val.replace('-', '')),
+	neighborhood: z.string()
+		.min(3, 'Neighborhood name is too short'),
+	city: z.string()
+		.min(3, 'City name is too short'),
+	state: z.string()
+		.length(2, 'State must be a 2-letter abbreviation')
+		.toUpperCase(),
+});
+
 export class Address{
-	private static readonly schema = z.object({
-		street: z.string()
-			.min(3, 'Street name is too short'),
-		number: z.string()
-			.min(1, 'Number is required'),
-		cep: z.string()
-			.regex(/^\d{5}-?\d{3}$/, 'Invalid CEP format')
-			.transform(val => val.replace('-', '')),
-		neighborhood: z.string()
-			.min(3, 'Neighborhood name is too short'),
-		city: z.string()
-			.min(3, 'City name is too short'),
-		state: z.string()
-			.length(2, 'State must be a 2-letter abbreviation')
-			.toUpperCase(),
-	});
+
 	private constructor(private readonly props:Props){}
 
 	public static create(props: Omit<Props, 'cep' | 'state'> & { cep: string,
 		state: string }): Address {
 		try {
-			const validatedProps = Address.schema.parse(props);
+			const validatedProps = addressSchema.parse(props);
 
 			return new Address(validatedProps);
 		} catch (error: any) {
