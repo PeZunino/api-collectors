@@ -1,3 +1,4 @@
+import { Entity } from '@/shared/entity';
 import { Address } from '../valueObjects/address';
 import { Email } from '../valueObjects/email';
 import { PhoneNumber } from '../valueObjects/phone';
@@ -15,13 +16,7 @@ interface Props{
 
 type AddressProps = typeof Address.prototype;
 
-export class Auctioneer{
-	private readonly id:UniqueID;
-
-	private constructor(private props:Props, id?:UniqueID){
-		this.id = id ?? new UniqueID();
-	}
-
+export class Auctioneer extends Entity<Props>{
 	public static create(props:Omit<Props,'websites'> & {websiteURLs:string[]}){
 		const email = Email.create(props.email.address); 
 
