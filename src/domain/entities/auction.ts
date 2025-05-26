@@ -1,4 +1,4 @@
-import { Entity } from '@/shared/entity';
+import { AggregateRoot } from '@/shared/aggregateRoot';
 import { Metadata } from '../valueObjects/metaData';
 import { UniqueID } from '../valueObjects/uniqueId';
 import { Good } from './good';
@@ -10,7 +10,7 @@ export interface AuctionProps {
 	metaData?: Metadata;
 }
 
-export class Auction extends Entity<AuctionProps> {
+export class Auction extends AggregateRoot<AuctionProps> {
 
 	constructor(props: AuctionProps, id?: UniqueID) {
 		super(props, id);
